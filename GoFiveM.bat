@@ -1,53 +1,99 @@
 @echo off
+setlocal enabledelayedexpansion
+color 0A
+mode con: cols=80 lines=25
+title RPQC - Nettoyeur de Cache FiveM
+
+cls
 echo.
-echo ===========================================
-echo   Delete ta Cache FiveM automatiquement
-echo ===========================================
+echo  ===================================================
+echo         Nettoyeur de Cache FiveM Automatique
+echo  ===================================================
 echo.
-echo On vide le cache!...
+echo  [*] Demarrage du nettoyage...
+timeout /t 2 /nobreak >nul
+
+cls
+echo.
+echo  ===================================================
+echo         Nettoyage en cours
+echo  ===================================================
+echo.
+echo  [~] Suppression des fichiers cache...
 echo.
 
-REM Delete cache folders using %LOCALAPPDATA% for any user
 rd /s /q "%LOCALAPPDATA%\FiveM\FiveM.app\data\cache" 2>nul
+echo  [OK] Cache principal supprime
+timeout /t 1 /nobreak >nul
+
 rd /s /q "%LOCALAPPDATA%\FiveM\FiveM.app\data\server-cache" 2>nul
+echo  [OK] Cache serveur supprime
+timeout /t 1 /nobreak >nul
+
 rd /s /q "%LOCALAPPDATA%\FiveM\FiveM.app\data\server-cache-priv" 2>nul
+echo  [OK] Cache prive supprime
+timeout /t 1 /nobreak >nul
 
-echo C'est fait!
-timeout /t 1 /nobreak >nul
 echo.
-echo On attend 10 secondes avant de lancer FiveM...
-timeout /t 1 /nobreak >nul
-echo Prends ton temps, on est pas presse!
-timeout /t 1 /nobreak >nul
-echo C'est pour que tout se charge bien :p
-timeout /t 1 /nobreak >nul
+echo  [TERMINE] Cache nettoye avec succes!
+echo.
+timeout /t 2 /nobreak >nul
+
+cls
+echo.
+echo  ===================================================
+echo         Preparation du lancement
+echo  ===================================================
+echo.
+echo  [INFO] Attente de 10 secondes avant de lancer FiveM...
+echo         (Pour que tout se charge correctement)
+echo.
+echo  Progression:
 echo.
 
-REM Progress bar
-echo [          ] 0%%
-timeout /t 1 /nobreak >nul
-echo [#         ] 10%%
-timeout /t 1 /nobreak >nul
-echo [##        ] 20%%
-timeout /t 1 /nobreak >nul
-echo [###       ] 30%%
-timeout /t 1 /nobreak >nul
-echo [####      ] 40%%
-timeout /t 1 /nobreak >nul
-echo [#####     ] 50%%
-timeout /t 1 /nobreak >nul
-echo [######    ] 60%%
-timeout /t 1 /nobreak >nul
-echo [#######   ] 70%%
-timeout /t 1 /nobreak >nul
-echo [########  ] 80%%
-timeout /t 1 /nobreak >nul
-echo [######### ] 90%%
-timeout /t 1 /nobreak >nul
-echo [##########] 100%%
+for /L %%i in (1,1,10) do (
+    cls
+    echo.
+    echo  ===================================================
+    echo         Preparation du lancement
+    echo  ===================================================
+    echo.
+    echo  [INFO] Chargement en cours...
+    echo.
+    
+    if %%i==1 echo  [##                  ] 10%%
+    if %%i==2 echo  [####                ] 20%%
+    if %%i==3 echo  [######              ] 30%%
+    if %%i==4 echo  [########            ] 40%%
+    if %%i==5 echo  [##########          ] 50%%
+    if %%i==6 echo  [############        ] 60%%
+    if %%i==7 echo  [##############      ] 70%%
+    if %%i==8 echo  [################    ] 80%%
+    if %%i==9 echo  [##################  ] 90%%
+    if %%i==10 echo  [####################] 100%%
+    
+    echo.
+    timeout /t 1 /nobreak >nul
+)
+
+cls
 echo.
-echo Tu vois, c'etait pas long!
-echo Lancement de FiveM en cours...
+echo  ===================================================
+echo         Lancement
+echo  ===================================================
+echo.
+echo  [OK] C'etait pas long, hein?
+echo.
+echo  [GO] Lancement de FiveM maintenant...
+echo       Bon RP sur RPQC!
+echo.
+echo       Rejoins-nous: discord.gg/rpqc
+echo.
+timeout /t 2 /nobreak >nul
+
 start "" "%LOCALAPPDATA%\FiveM\FiveM.exe"
 
+echo  [OK] FiveM est lance!
+echo.
+timeout /t 3 /nobreak >nul
 exit
